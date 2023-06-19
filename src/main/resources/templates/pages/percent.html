@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+<main class="container">
+    <!--First calculator-->
+    <article class="article-container">
+        <h2>
+            What is x % of y?
+        </h2>
+        <div class="example">
+            <p>Example: </p>
+            <p>25% from 253 = 63.3%</p>
+        </div>
+        <section class="section-container">
+            <form action="/percent/first" method="post">
+                <label>
+                    First number
+                    <input type="number" name="percentNumberFirst" id="percentNumberFirst" th:field="${percentDTO.percentNumberFirst}">
+                </label>
+                <label>
+                    Second number
+                    <input type="number" name="percentNumberSecond" id="percentNumberSecond" th:field="${percentDTO.percentNumberSecond}">
+                </label>
+                <div class="button-container">
+                    <input type="submit" value="Submit" />
+                    <input type="reset" value="Reset" />
+                </div>
+            </form>
+            <div class="result-container">
+                <p>Result: </p>
+                <div class="result-textarea">
+                    <span th:if="${percentResultFirst != null}">
+                        <span th:text="${percentDTO.percentNumberFirst} + '%'"></span>
+                        <span>from</span>
+                        <span th:text="${percentDTO.percentNumberSecond}"></span>
+                        <span>=</span>
+                        <span th:text="${percentResultFirst}"></span>
+                    </span>
+                </div>
+            </div>
+        </section>
+    </article>
+    <!--Second calculator-->
+    <article class="article-container">
+        <h2>
+            What is the percentage of x to y?
+        </h2>
+        <div class="example">
+            <p>Example: </p>
+            <p>15 from 100 = 15%</p>
+        </div>
+        <section class="section-container">
+            <form action="/percent/second" method="post">
+                <label>
+                    First number
+                    <input type="number" name="percentNumberThird" id="percentNumberThird" th:field="${percentDTO.percentNumberThird}">
+                </label>
+                <label>
+                    Second number
+                    <input type="number" name="percentNumberFourth" id="percentNumberFourth" th:field="${percentDTO.percentNumberFourth}">
+                </label>
+                <div class="button-container">
+                    <input type="submit" value="Submit" />
+                    <input type="reset" value="Reset" />
+                </div>
+            </form>
+            <div class="result-container">
+                <p>Result: </p>
+                <div class="result-textarea">
+                    <span th:if="${percentResultSecond != null}">
+                        <span th:text="${percentDTO.percentNumberThird}"></span>
+                        <span>from</span>
+                        <span th:text="${percentDTO.percentNumberFourth}"></span>
+                        <span>=</span>
+                        <span th:text="${percentResultSecond} + '%'"></span>
+                    </span>
+                </div>
+            </div>
+        </section>
+    </article>
+    <!--Third calculator-->
+    <article class="article-container">
+        <h2>
+            By what percentage is the number x more than the number y?
+        </h2>
+        <div class="example">
+            <p>Example: </p>
+            <p>150 is 500% more than 25.</p>
+            <p>25 is 83% less than 150.</p>
+        </div>
+        <section class="section-container">
+            <form action="/percent/third" method="post">
+                <label>
+                    First number
+                    <input type="number" name="percentNumberFifth" id="percentNumberFifth" th:field="${percentDTO.percentNumberFifth}">
+                </label>
+                <label>
+                    Second number
+                    <input type="number" name="percentNumberSixth" id="percentNumberSixth" th:field="${percentDTO.percentNumberSixth}">
+                </label>
+                <div class="button-container">
+                    <input type="submit" value="Submit" />
+                    <input type="reset" value="Reset" />
+                </div>
+            </form>
+            <div class="result-container">
+                <p>Result: </p>
+                <div class="result-textarea">
+                    <span th:if="${percentResultThird != null}">
+                        <span th:text="${percentDTO.percentNumberFifth}"></span>
+                        <span>is</span>
+                        <span th:text="${percentResultThird} + '%'"></span>
+                        <span>more than</span>
+                        <span th:text="${percentDTO.percentNumberSixth}"></span>
+                        <br>
+                        <span th:text="${percentDTO.percentNumberSixth}"></span>
+                        <span>is</span>
+                        <span th:text="${percentResultFourth} + '%'"></span>
+                        <span>less than</span>
+                        <span th:text="${percentDTO.percentNumberFifth}"></span>
+                    </span>
+                </div>
+            </div>
+        </section>
+    </article>
+</main>
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+<script th:src="@{/scripts/script.js}"></script>
+</body>
+
+</html>

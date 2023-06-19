@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+<main class="container">
+  <article class="article-container">
+    <h2>
+      Basic math operations
+    </h2>
+    <div class="example">
+      <p>Example: </p>
+      <p>2 + 3 = 5</p>
+    </div>
+
+    <section class="section-container">
+      <form action="/basic" method="post">
+        <label>
+          First number
+          <input type="number" name="number1" id="number1" th:field="${basicDTO.number1}">
+        </label>
+        <label>
+          Second number
+          <input type="number" name="number2" id="number2" th:field="${basicDTO.number2}">
+        </label>
+        <label>
+          Operation:
+          <select class="operation" id="operation" name="operation" th:field="${basicDTO.operation}">
+            <option value="+">Plus</option>
+            <option value="-">Minus</option>
+            <option value="*">Times</option>
+            <option value="/">Divide by</option>
+          </select>
+        </label>
+        <div class="button-container">
+          <input type="submit" value="Submit" />
+          <input type="reset" value="Reset" />
+        </div>
+      </form>
+      <div class="result-container">
+        <p>Result: </p>
+        <div class="result-textarea">
+                    <span th:if="${result != null}">
+                        <span th:text="${basicDTO.number1}"></span>
+                        <span th:text="${basicDTO.operation}"></span>
+                        <span th:text="${basicDTO.number2}"></span>
+                        <span>=</span>
+                        <span th:text="${result}"></span>
+                    </span>
+        </div>
+      </div>
+    </section>
+  </article>
+</main>
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+<script th:src="@{/scripts/script.js}"></script>
+</body>
+
+</html>

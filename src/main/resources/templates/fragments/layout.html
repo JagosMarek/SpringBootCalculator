@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" th:href="@{/images/calculator-icon.ico}"/>
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+    <title>Calculator</title>
+</head>
+<body>
+
+    <header th:fragment="header" class="application-header">
+        <nav class="application-navbar">
+            <a th:href="@{/}" class="nav-logo">
+                <span class="bracket-right">&#123</span>
+                <span class="c1">C</span>
+                <span class="a1">a</span>
+                <span class="l1">l</span>
+                <span class="c2">c</span>
+                <span class="u">u</span>
+                <span class="l2">l</span>
+                <span class="a2">a</span>
+                <span class="t">t</span>
+                <span class="o">o</span>
+                <span class="r">r</span>
+                <span class="bracket-left">&#125</span>
+            </a>
+            <ul class="nav-menu">
+             <li class="nav-item">
+                    <a th:href="@{/basic}" class="nav-link">Basics</a>
+             </li>
+              <li class="nav-item">
+                 <a th:href="@{/percent}" class="nav-link">Percent</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/average}" class="nav-link">Average</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/factorial}" class="nav-link">Factorial</a>
+                </li>
+            </ul>
+            <div class="bar-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <footer th:fragment="footer" class="application-footer">
+    <p>@Marek Jagoš, 2023</p>
+    </footer>
+</body>
+</html>

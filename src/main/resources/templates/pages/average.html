@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+<main class="container">
+  <!--First calculator-->
+  <article class="article-container">
+    <h2>
+      What is the average of the numbers
+    </h2>
+    <div class="example">
+      <p>Example: </p>
+      <p>2 5 9 4 8 = 5.6 | Separate numbers with spaces. Use a dot for decimal numbers. Max character length is 500.</p>
+    </div>
+    <section class="section-container">
+      <form action="/average/mean" method="post">
+        <label>
+          Numbers
+          <input th:field="${averageDTO.averageNumbers}" type="text" name="averageNumbers" id="averageNumbers" placeholder="2 5 9 4 8">
+        </label>
+
+        <div class="button-container">
+          <input type="submit" value="Submit" />
+          <input type="reset" value="Reset" />
+          <p>Round to <input th:field="${averageDTO.averageDecimal}" type="number" name="averageDecimal" id="averageDecimal" placeholder="Decimal" min="0" max="30" pattern="[0-9]+" required> decimal places (0-30)</p>
+        </div>
+      </form>
+      <div class="result-container">
+        <p>Result: </p>
+        <div class="result-textarea">
+          <div th:if="${resultAverage != null}" th:class="${resultAverage == 'Incorrect input.' ? 'error' : ''}">
+            <span th:text="${resultAverage}"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+  <!--Second calculator-->
+  <article class="article-container">
+    <h2>
+      What is the median of the numbers
+    </h2>
+    <div class="example">
+      <p>Example: </p>
+      <p>2 5 9 4 8 = 5 | Separate numbers with spaces. Use a dot for decimal numbers. Max character length is 500.</p>
+    </div>
+    <section class="section-container">
+      <form action="/average/median" method="post">
+        <label>
+          Numbers
+          <input th:field="${averageDTO.medianNumbers}" type="text" name="medianNumbers" id="medianNumbers" placeholder="2 5 9 4 8">
+        </label>
+
+        <div class="button-container">
+          <input type="submit" value="Submit" />
+          <input type="reset" value="Reset" />
+          <p>Round to <input th:field="${averageDTO.medianDecimal}" type="number" name="medianDecimal" id="medianDecimal" placeholder="Decimal" min="0" max="30" pattern="[0-9]+" required> decimal places (0-30)</p>
+        </div>
+      </form>
+      <div class="result-container">
+        <p>Result: </p>
+        <div class="result-textarea">
+        <div th:if="${resultMedian != null}" th:class="${resultMedian == 'Incorrect input.' ? 'error' : ''}">
+                        <span th:text="${resultMedian}"></span>
+        </div>
+        </div>
+      </div>
+    </section>
+  </article>
+</main>
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+<script th:src="@{/scripts/script.js}"></script>
+</body>
+
+</html>

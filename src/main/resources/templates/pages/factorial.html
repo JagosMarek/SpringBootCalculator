@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+<main class="container">
+    <article class="article-container">
+        <h2>
+            What is the factorial of x
+        </h2>
+        <div class="example">
+            <p>Example: </p>
+            <p>5! = 120</p>
+            <p>n! = 1*2*3*4*5</p>
+        </div>
+        <section class="section-container">
+            <form action="/factorial" method="post">
+                <label>
+                    Number
+                    <input type="text" name="number" id="number" th:field="${factorialDTO.number}">
+                </label>
+
+                <div class="button-container">
+                    <input type="submit" value="Submit" />
+                    <input type="reset" value="Reset" />
+                </div>
+            </form>
+            <div class="result-container">
+                <p>Result: </p>
+                <div class="result-textarea">
+                    <span th:if="${result != null}">
+                        <span th:text="${factorialDTO.number} + '!'"></span>
+                        <span>=</span>
+                        <span th:text="${result}"></span>
+                    </span>
+                </div>
+            </div>
+        </section>
+    </article>
+</main>
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+<script th:src="@{/scripts/script.js}"></script>
+</body>
+
+</html>
