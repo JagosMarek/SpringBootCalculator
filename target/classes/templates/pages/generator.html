@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+<main class="container">
+  <article class="article-container">
+    <h2>
+      Generátor náhodných čísel
+    </h2>
+    <div class="example">
+      <p>Generuje náhodné celé číslo z intervalu. Příklad: </p>
+      <p>&#60;2 , 8&#62; = 6</p>
+    </div>
+
+    <section class="section-container">
+      <form action="#" method="post"> <!--Doplnit akci !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+        <label>
+          Horní hranice
+          <input type="number" name="number1" id="number1">
+        </label>
+        <label>
+          Spodní hranice
+          <input type="number" name="number2" id="number2">
+        </label>
+        <div class="button-container">
+          <input type="submit" value="Generovat" />
+          <input type="reset" value="Vymazat" />
+          <p>Počet opakování<input type="number" name="rangeNumber" id="rangeNumber" placeholder="1" min="0" max="30" pattern="[0-9]+" required></p>
+        </div>
+      </form>
+      <div class="result-container">
+        <p>Výsledek: </p>
+        <div class="result-textarea">
+                        <span th:if="${result != null}">
+                            <span th:text="${basicDTO.number1}"></span>
+                            <span th:text="${basicDTO.operation}"></span>
+                            <span th:text="${basicDTO.number2}"></span>
+                            <span>=</span>
+                            <span th:text="${result}"></span>
+                        </span>
+        </div>
+      </div>
+    </section>
+  </article>
+</main>
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+<script th:src="@{/scripts/script.js}"></script>
+</body>
+
+</html>

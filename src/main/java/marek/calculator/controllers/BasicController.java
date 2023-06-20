@@ -21,7 +21,7 @@ public class BasicController {
 
     @PostMapping
     public String calculate(@ModelAttribute BasicDTO basicDTO, Model model) {
-        double result = basicService.calculate(basicDTO);
+        String result = basicService.calculate(basicDTO);
 
         model.addAttribute("result", result);
         return "pages/basic";
