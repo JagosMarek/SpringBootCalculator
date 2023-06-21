@@ -4,11 +4,9 @@ import marek.calculator.models.dto.PercentDTO;
 
 public interface PercentService {
 
-    double calculateFirst(PercentDTO percentDTO);
+    String calculateFirst(PercentDTO percentDTO);
+    String calculateSecond(PercentDTO percentDTO);
+    String calculateThird(PercentDTO percentDTO);
+    String calculateFourth(PercentDTO percentDTO);
 
-    double calculateSecond(PercentDTO percentDTO);
-
-    double calculateThird(PercentDTO percentDTO);
-
-    double calculateFourth(PercentDTO percentDTO);
 }

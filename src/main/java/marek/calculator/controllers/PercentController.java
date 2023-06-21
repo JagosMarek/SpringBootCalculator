@@ -10,13 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.text.DecimalFormat;
-
 @Controller
 @RequestMapping(value = "/percent")
 public class PercentController {
 
-    DecimalFormat decimalFormat = new DecimalFormat("0.00");
     @Autowired
     private PercentService percentService;
     @GetMapping
@@ -27,11 +24,9 @@ public class PercentController {
     @PostMapping (value = "/first")
     public String calculateFirst(@ModelAttribute PercentDTO percentDTO, Model model){
 
-        double result = percentService.calculateFirst(percentDTO);
+        String result = percentService.calculateFirst(percentDTO);
 
-        String formattedResultFirst = decimalFormat.format(result);
-
-        model.addAttribute("percentResultFirst", formattedResultFirst);
+        model.addAttribute("result1", result);
 
         return "pages/percent";
     }
@@ -39,11 +34,9 @@ public class PercentController {
     @PostMapping (value = "/second")
     public String calculateSecond(@ModelAttribute PercentDTO percentDTO, Model model){
 
-        double result = percentService.calculateSecond(percentDTO);
+        String result = percentService.calculateSecond(percentDTO);
 
-        String formattedResultSecond = decimalFormat.format(result);
-
-        model.addAttribute("percentResultSecond", formattedResultSecond);
+        model.addAttribute("result2", result);
 
         return "pages/percent";
     }
@@ -51,16 +44,12 @@ public class PercentController {
     @PostMapping (value = "/third")
     public String calculateThird(@ModelAttribute PercentDTO percentDTO, Model model){
 
-        double resultThird = percentService.calculateThird(percentDTO);
-        double resultFourth = percentService.calculateFourth(percentDTO);
+        String resultThird = percentService.calculateThird(percentDTO);
+        String resultFourth = percentService.calculateFourth(percentDTO);
 
-        String formattedResultThird = decimalFormat.format(resultThird);
-        String formattedResultFourth = decimalFormat.format(resultFourth);
-
-        model.addAttribute("percentResultThird", formattedResultThird);
-        model.addAttribute("percentResultFourth", formattedResultFourth);
+        model.addAttribute("result3", resultThird);
+        model.addAttribute("result4", resultFourth);
 
         return "pages/percent";
     }
-
 }

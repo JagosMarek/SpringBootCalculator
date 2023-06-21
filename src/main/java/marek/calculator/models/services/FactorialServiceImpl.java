@@ -3,14 +3,43 @@ package marek.calculator.models.services;
 import marek.calculator.models.dto.FactorialDTO;
 import org.springframework.stereotype.Service;
 
-@Service
-public class FactorialServiceImpl implements FactorialService{
+import java.math.BigDecimal;
 
-    public long calculate(FactorialDTO factorialDTO){
-        long n = 1;
-        for(int i = 1; i <= factorialDTO.getNumber(); i++){
-            n*=i;
+@Service
+public class FactorialServiceImpl implements FactorialService {
+
+    private final int MAX_LENGTH = 10;
+
+    public String calculate(FactorialDTO factorialDTO) {
+
+        if (factorialDTO.getNumber().length() > 10) {
+            return "Maximální délka čísla je 10 znaků";
         }
-        return n;
+        // Check if the input is a valid number
+        String number = factorialDTO.getNumber().trim();
+        if (!number.matches("\\d+")) {
+            return "Chybný vstup";
+        }
+
+        BigDecimal num = new BigDecimal(number);
+
+        if (num.compareTo(new BigDecimal("171")) >= 0) {
+            return "Nekonečno";
+        }
+
+        if (num.equals(BigDecimal.ZERO)) {
+            return "1";
+        }
+
+        BigDecimal result = BigDecimal.ONE;
+        BigDecimal n = new BigDecimal(num.toBigInteger());
+
+        while (n.compareTo(BigDecimal.ZERO) > 0) {
+            result = result.multiply(n);
+            n = n.subtract(BigDecimal.ONE);
+        }
+
+        return result.toString();
     }
 }
+

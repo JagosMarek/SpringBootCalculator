@@ -1,56 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="">
 <head th:fragment="head">
-    <meta charset="utf-8" />
-    <meta name="description" content="Osobní portfolio programátora HoBiho." />
-    <meta name="keywords" content="portfolio, programátor, HoBi" />
-    <meta name="author" content="HoBi" />
-    <title>Moje první webová stránka</title>
-
-    <link rel="stylesheet" th:href="@{/styles/lightbox.min.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{/styles/styles.css}" type="text/css"/>
-    <link rel="shortcut icon" th:href="@{/images/ikona.ico}"/>
-
-    <script th:src="@{/scripts/lightbox-plus-jquery.min.js}"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.0.3/tinymce.min.js"></script>
-    <script>
-        tinymce.init({
-            selector: "textarea[id*=content]",
-            entities: "160,nbsp",
-            entity_encoding: "named",
-            entity_encoding: "raw"
-        });
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" th:href="@{/images/calculator-icon.ico}"/>
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+    <title>Kalkulačka</title>
 </head>
 <body>
-<header th:fragment="header">
-    <div id="logo">
-        <h1>Honza<span>Bittner</span></h1>
-        <small>webdeveloper</small>
-    </div>
-    <nav>
-        <ul>
-            <li><a th:href="@{/}">Domů</a></li>
-            <li><a th:href="@{/articles}">Články</a></li>
-            <li><a th:href="@{skills}">Dovednosti</a></li>
-            <li><a th:href="@{/references}">Reference</a></li>
-            <li><a class="kontakt-tlacitko" th:href="@{contact}">Kontakt</a></li>
-            <li sec:authorize="isAnonymous()"><a th:href="@{/account/login}">Přihlásit se</a></li>
-            <li sec:authorize="isAnonymous()"><a th:href="@{/account/register}">Registrovat</a></li>
-            <li>
-                <form method="post" th:action="@{/account/logout}">
-                    <button class="btn text-white" sec:authorize="isAuthenticated()">Odhlásit se</button>
-                </form>
-            </li>
-        </ul>
-    </nav>
-</header>
 
-    <footer th:fragment="footer">
-        Vytvořil &copy;HoBi 2021 pro <a href="https://itnetwork.cz">itnetwork.cz</a>
+    <header th:fragment="header" class="application-header">
+        <nav class="application-navbar">
+            <a th:href="@{/}" class="nav-logo">
+                <span class="bracket-right">&#123</span>
+                <span class="c1">K</span>
+                <span class="a1">a</span>
+                <span class="l1">l</span>
+                <span class="c2">k</span>
+                <span class="u">u</span>
+                <span class="l2">l</span>
+                <span class="a2">a</span>
+                <span class="t">č</span>
+                <span class="o">k</span>
+                <span class="r">a</span>
+                <span class="bracket-left">&#125</span>
+            </a>
+            <ul class="nav-menu">
+             <li class="nav-item">
+                    <a th:href="@{/basic}" class="nav-link">Základ</a>
+             </li>
+              <li class="nav-item">
+                 <a th:href="@{/percent}" class="nav-link">Procenta</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/average}" class="nav-link">Průměr</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/factorial}" class="nav-link">Faktoriál</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/generator}" class="nav-link">Generátor</a>
+                </li>
+            </ul>
+            <div class="bar-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <footer th:fragment="footer" class="application-footer">
+    <p>@Marek Jagoš, 2023</p>
     </footer>
-
 </body>
 </html>

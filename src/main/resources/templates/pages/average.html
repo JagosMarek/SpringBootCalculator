@@ -9,29 +9,29 @@
   <!--First calculator-->
   <article class="article-container">
     <h2>
-      What is the average of the numbers
+      Jaký je průměr čísel
     </h2>
     <div class="example">
-      <p>Example: </p>
-      <p>2 5 9 4 8 = 5.6 | Separate numbers with spaces. Use a dot for decimal numbers. Max character length is 500.</p>
+      <p class="example">Příklad: </p>
+      <p class="example">2 5 9 4 8 = 5,6 | Čísla oddělujte mezerami. Pro desetinná čísla používejte tečku. Maximální délka je 500 znaků.</p>
     </div>
     <section class="section-container">
       <form action="/average/mean" method="post">
         <label>
-          Numbers
+          Čísla
           <input th:field="${averageDTO.averageNumbers}" type="text" name="averageNumbers" id="averageNumbers" placeholder="2 5 9 4 8">
         </label>
 
         <div class="button-container">
-          <input type="submit" value="Submit" />
-          <input type="reset" value="Reset" />
-          <p>Round to <input th:field="${averageDTO.averageDecimal}" type="number" name="averageDecimal" id="averageDecimal" placeholder="Decimal" min="0" max="30" pattern="[0-9]+" required> decimal places (0-30)</p>
+            <input type="submit" value="Počítat" />
+            <input type="button" value="Vymazat" onclick="resetFormAverage()" />
+          <p>Zaokrouhlit na<input th:field="${averageDTO.averageDecimal}" type="number" name="averageDecimal" id="averageDecimal" placeholder="Decimal" min="0" max="10" pattern="[0-9]+" required>desetinných míst (0-10)</p>
         </div>
       </form>
       <div class="result-container">
-        <p>Result: </p>
+        <p>Výsledek: </p>
         <div class="result-textarea">
-          <div th:if="${result != null}" th:class="${result == 'Chybný vstup' || result == 'Nulou nelze dělit' || result == 'Maximální délka čísla je 500 znaků' ? 'error' : ''}">
+          <div th:if="${resultAverage != null}" th:class="${resultAverage == 'Chybný vstup' || resultAverage == 'Maximální délka čísla je 500 znaků' ? 'error' : ''}">
             <span th:text="${resultAverage}"></span>
           </div>
         </div>
@@ -41,33 +41,33 @@
   <!--Second calculator-->
   <article class="article-container">
     <h2>
-      What is the median of the numbers
+      Jaký je medián čísel
     </h2>
     <div class="example">
-      <p>Example: </p>
-      <p>2 5 9 4 8 = 5 | Separate numbers with spaces. Use a dot for decimal numbers. Max character length is 500.</p>
+      <p class="example">Příklad </p>
+      <p class="example">2 5 9 4 8 = 5 | Čísla oddělujte mezerami. Pro desetinná čísla používejte tečku. Maximální délka je 500 znaků.</p>
     </div>
     <section class="section-container">
       <form action="/average/median" method="post">
         <label>
-          Numbers
+          Čísla
           <input th:field="${averageDTO.medianNumbers}" type="text" name="medianNumbers" id="medianNumbers" placeholder="2 5 9 4 8">
         </label>
 
         <div class="button-container">
-          <input type="submit" value="Submit" />
-          <input type="reset" value="Reset" />
-          <p>Round to <input th:field="${averageDTO.medianDecimal}" type="number" name="medianDecimal" id="medianDecimal" placeholder="Decimal" min="0" max="30" pattern="[0-9]+" required> decimal places (0-30)</p>
+            <input type="submit" value="Počítat" />
+            <input type="button" value="Vymazat" onclick="resetFormMedian()" />
+          <p>Zaokrouhlit na<input th:field="${averageDTO.medianDecimal}" type="number" name="medianDecimal" id="medianDecimal" placeholder="Decimal" min="0" max="10" pattern="[0-9]+" required>desetinných míst (0-10)</p>
         </div>
       </form>
-      <div class="result-container">
-        <p>Result: </p>
-        <div class="result-textarea">
-        <div th:if="${resultMedian != null}" th:class="${resultMedian == 'Incorrect input.' ? 'error' : ''}">
-                        <span th:text="${resultMedian}"></span>
+        <div class="result-container">
+            <p>Výsledek: </p>
+            <div class="result-textarea">
+                <div th:if="${resultMedian != null}" th:class="${resultMedian == 'Chybný vstup' || resultMedian == 'Maximální délka čísla je 500 znaků' ? 'error' : ''}">
+                    <span th:text="${resultMedian}"></span>
+                </div>
+            </div>
         </div>
-        </div>
-      </div>
     </section>
   </article>
 </main>

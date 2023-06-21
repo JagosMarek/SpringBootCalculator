@@ -2,13 +2,13 @@ package marek.calculator.models.dto;
 
 public class FactorialDTO {
 
-    private long number;
+    private String number;
 
-    public long getNumber() {
-        return number;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public void setNumber(long number) {
-        this.number = number;
+    public String getNumber() {
+        return number;
     }
 }

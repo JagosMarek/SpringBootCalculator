@@ -24,7 +24,7 @@ public class FactorialController {
     @PostMapping
     public String calculate(FactorialDTO factorialDTO, Model model){
 
-        long result = factorialService.calculate(factorialDTO);
+        String result = factorialService.calculate(factorialDTO);
 
         model.addAttribute("result", result);
 

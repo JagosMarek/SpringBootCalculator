@@ -15,7 +15,7 @@ public class AverageServiceImpl implements AverageService {
     public String average(AverageDTO averageDTO) {
         String allowedNumbers = validNumbersAverage(averageDTO);
         if (allowedNumbers.length() > MAX_LENGTH) {
-            return "Too long, max length si 500";
+            return "Maximální délka čísla je 500 znaků";
         }
 
         String[] numberStrings = allowedNumbers.split(" ");
@@ -25,23 +25,27 @@ public class AverageServiceImpl implements AverageService {
             try {
                 numbers[i] = new BigDecimal(numberStrings[i]);
             } catch (NumberFormatException e) {
-                return "Incorrect input.";
+                return "Chybný vstup";
             }
         }
 
+        //average calculation
         BigDecimal sum = BigDecimal.ZERO;
         for (BigDecimal number : numbers) {
             sum = sum.add(number);
         }
 
-        BigDecimal mean = sum.divide(BigDecimal.valueOf(numbers.length), averageDTO.getAverageDecimal(), RoundingMode.HALF_UP);
+        BigDecimal mean = sum.divide(BigDecimal.valueOf(numbers.length), 10, RoundingMode.HALF_UP);
+
+        mean = mean.setScale(averageDTO.getAverageDecimal(), RoundingMode.HALF_UP);
+
         return mean.toPlainString();
     }
 
     public String median(AverageDTO averageDTO) {
         String allowedNumbers = validNumbersMedian(averageDTO);
         if (allowedNumbers.length() > MAX_LENGTH) {
-            return "Too long, max length si 500";
+            return "Maximální délka čísla je 500 znaků";
         }
 
         String[] numberStrings = allowedNumbers.split(" ");
@@ -51,10 +55,11 @@ public class AverageServiceImpl implements AverageService {
             try {
                 numbers[i] = new BigDecimal(numberStrings[i]);
             } catch (NumberFormatException e) {
-                return "Incorrect input.";
+                return "Chybný vstup";
             }
         }
 
+        //median calculation
         Arrays.sort(numbers);
         int length = numbers.length;
         int middleIndex = length / 2;
@@ -63,7 +68,9 @@ public class AverageServiceImpl implements AverageService {
             return numbers[middleIndex].setScale(averageDTO.getMedianDecimal(), RoundingMode.HALF_UP).toPlainString();
         } else {
             BigDecimal sum = numbers[middleIndex - 1].add(numbers[middleIndex]);
-            BigDecimal median = sum.divide(BigDecimal.valueOf(2), averageDTO.getMedianDecimal(), RoundingMode.HALF_UP);
+            BigDecimal median = sum.divide(BigDecimal.valueOf(2), 10, RoundingMode.HALF_UP);
+
+            median = median.setScale(averageDTO.getMedianDecimal(), RoundingMode.HALF_UP);
             return median.toPlainString();
         }
     }

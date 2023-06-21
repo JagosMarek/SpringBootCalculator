@@ -12,7 +12,7 @@
     </h2>
     <div class="example">
       <p>Příklad: </p>
-      <p>2 + 3 = 5 | Pro desetinná čísla použijte tečku. Maximální délka znaku je 500.</p>
+      <p>2 + 3 = 5 | Pro desetinná čísla použijte tečku. Maximální délka znaků je 500.</p>
     </div>
 
     <section class="section-container">
@@ -36,8 +36,9 @@
         </label>
         <div class="button-container">
           <input type="submit" value="Počítat" />
+          <input type="button" value="Prohodit" onclick="swap()" />
           <input type="button" value="Vymazat" onclick="resetForm()" />
-          <p>Zaokrouhlit na<input th:field="${basicDTO.decimal}" type="number" name="decimal" id="decimal" placeholder="Desetinné" min="0" max="30" pattern="[0-9]+" required>desetinná místa (0-30)</p>
+          <p>Zaokrouhlit na<input th:field="${basicDTO.decimal}" type="number" name="decimal" id="decimal" placeholder="Desetinné" min="0" max="10" pattern="[0-9]+" required>desetinných míst (0-10)</p>
         </div>
       </form>
       <div class="result-container">
@@ -53,17 +54,5 @@
 </main>
 <footer th:replace="~{fragments/layout.html :: footer}"></footer>
 <script th:src="@{/scripts/script.js}"></script>
-<script>
-  function resetForm() {
-
-    document.getElementById("number1").value = "";
-    document.getElementById("number2").value = "";
-    document.getElementById("operation").selectedIndex = 0;
-    document.getElementById("decimal").value = "1";
-
-    document.getElementById("basicForm").method = "get";
-    document.getElementById("basicForm").submit();
-  }
-</script>
 </body>
 </html>

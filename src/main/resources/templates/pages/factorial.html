@@ -8,33 +8,32 @@
 <main class="container">
     <article class="article-container">
         <h2>
-            What is the factorial of x
+            Jaký je faktoriál čísla n
         </h2>
         <div class="example">
-            <p>Example: </p>
-            <p>5! = 120</p>
-            <p>n! = 1*2*3*4*5</p>
+            <p class="example">Příklad: </p>
+            <p class="example">5! = 120</p>
+            <p class="example">n! = 1*2*3*4*5</p>
+            <p class="example">Pouze celá kladná čísla.</p>
         </div>
         <section class="section-container">
             <form action="/factorial" method="post">
                 <label>
-                    Number
-                    <input type="text" name="number" id="number" th:field="${factorialDTO.number}">
+                    Číslo
+                    <input th:field="${factorialDTO.number}" type="text" name="number" id="number">
                 </label>
 
                 <div class="button-container">
-                    <input type="submit" value="Submit" />
-                    <input type="reset" value="Reset" />
+                    <input type="submit" value="Počítat" />
+                    <input type="button" value="Vymazat" onclick="resetFormFactorial()" />
                 </div>
             </form>
             <div class="result-container">
-                <p>Result: </p>
+                <p>Výsledek: </p>
                 <div class="result-textarea">
-                    <span th:if="${result != null}">
-                        <span th:text="${factorialDTO.number} + '!'"></span>
-                        <span>=</span>
+                    <div th:if="${result != null}" th:class="${result == 'Chybný vstup' || result == 'Maximální délka čísla je 10 znaků' ? 'error' : ''}">
                         <span th:text="${result}"></span>
-                    </span>
+                    </div>
                 </div>
             </div>
         </section>

@@ -4,6 +4,7 @@ import marek.calculator.models.dto.BasicDTO;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Service
 public class BasicServiceImpl implements BasicService {
@@ -37,14 +38,16 @@ public class BasicServiceImpl implements BasicService {
                     if (num2.compareTo(BigDecimal.ZERO) == 0) {
                         return "Nulou nelze dělit";
                     }
-                    result = num1.divide(num2, basicDTO.getDecimal(), BigDecimal.ROUND_HALF_UP);
+
+                    // round the number to 10 places (if I get an infinite number)
+                    result = num1.divide(num2,10, RoundingMode.HALF_UP);
                     break;
                 default:
                     return "Nesprávný operátor";
             }
 
             // Round the result to the specified number of decimal places
-            result = result.setScale(basicDTO.getDecimal(), BigDecimal.ROUND_HALF_UP);
+            result = result.setScale(basicDTO.getDecimal(), RoundingMode.HALF_UP);
 
             return result.toString();
         } catch (NumberFormatException e) {
