@@ -12,35 +12,39 @@
     </h2>
     <div class="example">
       <p>Generuje náhodné celé číslo z intervalu. Příklad: </p>
-      <p>&#60;2 , 8&#62; = 6</p>
+      <p>&#60;2 , 8&#62; = 6 | Pouze celá čísla. Číslo &#34;od&#34; nemůže být větší než číslo &#34;do&#34;. Maximální délka čísla je 18 znaků</p>
     </div>
 
     <section class="section-container">
-      <form action="#" method="post"> <!--Doplnit akci !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+      <form action="/generator" method="post">
         <label>
-          Horní hranice
-          <input type="number" name="number1" id="number1">
+          Číslo od
+          <input th:field="${generatorDTO.number1}" type="text" name="number1" id="number1">
         </label>
         <label>
-          Spodní hranice
-          <input type="number" name="number2" id="number2">
+          Číslo do
+          <input th:field="${generatorDTO.number2}" type="text" name="number2" id="number2">
+        </label>
+        <label>
+          Typ mezery:
+          <select th:field="${generatorDTO.operation}" class="operation" id="operation" name="operation">
+            <option value="comma">Čárka</option>
+            <option value="space">Mezera</option>
+            <option value="noSpace">Bez mezery</option>
+          </select>
         </label>
         <div class="button-container">
           <input type="submit" value="Generovat" />
-          <input type="reset" value="Vymazat" />
-          <p>Počet opakování<input type="number" name="rangeNumber" id="rangeNumber" placeholder="1" min="0" max="30" pattern="[0-9]+" required></p>
+          <input type="button" value="Vymazat" onclick="resetFormGenerator()" />
+          <p>Počet opakování<input th:field="${generatorDTO.rangeNumber}" type="number" name="rangeNumber" id="rangeNumber" min="1" max="30" pattern="[0-9]+">(1-30)</p>
         </div>
       </form>
       <div class="result-container">
         <p>Výsledek: </p>
         <div class="result-textarea">
-                        <span th:if="${result != null}">
-                            <span th:text="${basicDTO.number1}"></span>
-                            <span th:text="${basicDTO.operation}"></span>
-                            <span th:text="${basicDTO.number2}"></span>
-                            <span>=</span>
-                            <span th:text="${result}"></span>
-                        </span>
+          <div th:if="${result != null}" th:class="${result == 'Chybný vstup' || result == 'Číslo &#34;od&#34; nemůže být větší než číslo &#34;do&#34;' || result == 'Maximální délka čísla je 18 znaků' ? 'error' : ''}">
+            <span th:text="${result}"></span>
+          </div>
         </div>
       </div>
     </section>

@@ -9,127 +9,122 @@
     <!--First calculator-->
     <article class="article-container">
         <h2>
-            What is x % of y?
+            Kolik je x % z čísla y?
         </h2>
         <div class="example">
-            <p>Example: </p>
-            <p>25% from 253 = 63.3%</p>
+            <p class="example">Příklad: </p>
+            <p class="example">25 % z 253 = 63.3 % | Pro desetinná čísla použijte tečku. Maximální délka znaků je 500.</p>
         </div>
         <section class="section-container">
             <form action="/percent/first" method="post">
                 <label>
-                    First number
-                    <input type="number" name="percentNumberFirst" id="percentNumberFirst" th:field="${percentDTO.percentNumberFirst}">
+                    První číslo x
+                    <input th:field="${percentDTO.number1}" type="text" name="number1" id="number1">
                 </label>
                 <label>
-                    Second number
-                    <input type="number" name="percentNumberSecond" id="percentNumberSecond" th:field="${percentDTO.percentNumberSecond}">
+                    Druhé číslo y
+                    <input th:field="${percentDTO.number2}" type="text" name="number2" id="number2">
                 </label>
                 <div class="button-container">
-                    <input type="submit" value="Submit" />
-                    <input type="reset" value="Reset" />
+                    <input type="submit" value="Počítat" />
+                    <input type="button" value="Prohodit" onclick="swapFirst()" />
+                    <input type="button" value="Vymazat" onclick="resetFormFirst()" />
+                    <p>Zaokrouhlit na<input th:field="${percentDTO.decimal1}" type="number" name="decimal1" id="decimal1" placeholder="Desetinné" min="0" max="10" pattern="[0-9]+" required>desetinná místa (0-10)</p>
                 </div>
             </form>
             <div class="result-container">
-                <p>Result: </p>
+                <p>Výsledek: </p>
                 <div class="result-textarea">
-                    <span th:if="${percentResultFirst != null}">
-                        <span th:text="${percentDTO.percentNumberFirst} + '%'"></span>
-                        <span>from</span>
-                        <span th:text="${percentDTO.percentNumberSecond}"></span>
-                        <span>=</span>
-                        <span th:text="${percentResultFirst}"></span>
-                    </span>
+                    <div th:if="${result1 != null}" th:class="${result1 == 'Chybný vstup' || result1 == 'Maximální délka čísla je 500 znaků' ? 'error' : ''}">
+                        <span th:unless="${result1 == 'Chybný vstup' || result1 == 'Maximální délka čísla je 500 znaků'}" th:text="${result1 + ' %'}"></span>
+                        <span th:if="${result1 == 'Chybný vstup' || result1 == 'Maximální délka čísla je 500 znaků'}" th:text="${result1}"></span>
+                    </div>
                 </div>
             </div>
         </section>
     </article>
     <!--Second calculator-->
+
     <article class="article-container">
         <h2>
-            What is the percentage of x to y?
+            Kolik procent je číslo x z čísla y ?
         </h2>
         <div class="example">
-            <p>Example: </p>
-            <p>15 from 100 = 15%</p>
+            <p class="example">Příklad: </p>
+            <p class="example">15 z 100 = 15 % | Pro desetinná čísla použijte tečku. Maximální délka znaků je 500.</p>
         </div>
         <section class="section-container">
             <form action="/percent/second" method="post">
                 <label>
-                    First number
-                    <input type="number" name="percentNumberThird" id="percentNumberThird" th:field="${percentDTO.percentNumberThird}">
+                    První číslo x
+                    <input th:field="${percentDTO.number3}" type="text" name="number3" id="number3" >
                 </label>
                 <label>
-                    Second number
-                    <input type="number" name="percentNumberFourth" id="percentNumberFourth" th:field="${percentDTO.percentNumberFourth}">
+                    Druhé číslo y
+                    <input th:field="${percentDTO.number4}" type="text" name="number4" id="number4" >
                 </label>
                 <div class="button-container">
-                    <input type="submit" value="Submit" />
-                    <input type="reset" value="Reset" />
+                    <input type="submit" value="Počítat" />
+                    <input type="button" value="Prohodit" onclick="swapSecond()" />
+                    <input type="button" value="Vymazat" onclick="resetFormSecond()" />
+                    <p>Zaokrouhlit na<input th:field="${percentDTO.decimal2}" type="number" name="decimal2" id="decimal2" placeholder="Desetinné" min="0" max="10" pattern="[0-9]+" required>desetinných míst (0-10)</p>
                 </div>
             </form>
             <div class="result-container">
-                <p>Result: </p>
+                <p>Výsledek: </p>
                 <div class="result-textarea">
-                    <span th:if="${percentResultSecond != null}">
-                        <span th:text="${percentDTO.percentNumberThird}"></span>
-                        <span>from</span>
-                        <span th:text="${percentDTO.percentNumberFourth}"></span>
-                        <span>=</span>
-                        <span th:text="${percentResultSecond} + '%'"></span>
-                    </span>
+                    <div th:if="${result2 != null}" th:class="${result2 == 'Chybný vstup' || result2 == 'Maximální délka čísla je 500 znaků' ? 'error' : ''}">
+                        <span th:unless="${result2 == 'Chybný vstup' || result2 == 'Maximální délka čísla je 500 znaků'}" th:text="${result2 + ' %'}"></span>
+                        <span th:if="${result2 == 'Chybný vstup' || result2 == 'Maximální délka čísla je 500 znaků'}" th:text="${result2}"></span>
+                    </div>
                 </div>
             </div>
         </section>
     </article>
     <!--Third calculator-->
-    <article class="article-container">
-        <h2>
-            By what percentage is the number x more than the number y?
-        </h2>
-        <div class="example">
-            <p>Example: </p>
-            <p>150 is 500% more than 25.</p>
-            <p>25 is 83% less than 150.</p>
-        </div>
-        <section class="section-container">
-            <form action="/percent/third" method="post">
-                <label>
-                    First number
-                    <input type="number" name="percentNumberFifth" id="percentNumberFifth" th:field="${percentDTO.percentNumberFifth}">
-                </label>
-                <label>
-                    Second number
-                    <input type="number" name="percentNumberSixth" id="percentNumberSixth" th:field="${percentDTO.percentNumberSixth}">
-                </label>
-                <div class="button-container">
-                    <input type="submit" value="Submit" />
-                    <input type="reset" value="Reset" />
-                </div>
-            </form>
-            <div class="result-container">
-                <p>Result: </p>
-                <div class="result-textarea">
-                    <span th:if="${percentResultThird != null}">
-                        <span th:text="${percentDTO.percentNumberFifth}"></span>
-                        <span>is</span>
-                        <span th:text="${percentResultThird} + '%'"></span>
-                        <span>more than</span>
-                        <span th:text="${percentDTO.percentNumberSixth}"></span>
-                        <br>
-                        <span th:text="${percentDTO.percentNumberSixth}"></span>
-                        <span>is</span>
-                        <span th:text="${percentResultFourth} + '%'"></span>
-                        <span>less than</span>
-                        <span th:text="${percentDTO.percentNumberFifth}"></span>
-                    </span>
-                </div>
+        <article class="article-container">
+            <h2>
+                O kolik procent je číslo x více než číslo y?
+            </h2>
+            <p class="example">Příklad: </p>
+            <p class="example">150 je o 500 % více než 25</p>
+            <p class="example">25 je 83 % méně než 150</p>
+            <p class="example">Pro desetinná čísla použijte tečku. Maximální délka znaků je 500.</p>
             </div>
-        </section>
-    </article>
+            <section class="section-container">
+                <form action="/percent/third" method="post">
+                    <label>
+                        První číslo x
+                        <input th:field="${percentDTO.number5}" type="text" name="number5" id="number5">
+                    </label>
+                    <label>
+                        Druhé číslo y
+                        <input th:field="${percentDTO.number6}" type="text" name="number6" id="number6">
+                    </label>
+                    <div class="button-container">
+                        <input type="submit" value="Počítat" />
+                        <input type="button" value="Prohodit" onclick="swapThird()" />
+                        <input type="button" value="Vymazat" onclick="resetFormThird()" />
+                        <p>Zaokrouhlit na<input th:field="${percentDTO.decimal3}" type="number" name="decimal3" id="decimal3" placeholder="Desetinné" min="0" max="10" pattern="[0-9]+" required>desetinných míst (0-10)</p>
+                    </div>
+                </form>
+                <div class="result-container">
+                    <p>Výsledek: </p>
+                    <div class="result-textarea">
+                        <div th:if="${result3 != null}" th:class="${result3 == 'Chybný vstup' || result3 == 'Maximální délka čísla je 500 znaků' ? 'error' : ''}">
+                            <span th:unless="${result3 == 'Chybný vstup' || result3 == 'Maximální délka čísla je 500 znaků'}" th:text="${result3}"></span>
+                            <span th:if="${result3 == 'Chybný vstup' || result3 == 'Maximální délka čísla je 500 znaků'}" th:text="${result3}"></span>
+                            <br>
+                            <span th:if="${result4 != null}"><span th:text="${result4}"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </article>
 </main>
 <footer th:replace="~{fragments/layout.html :: footer}"></footer>
 <script th:src="@{/scripts/script.js}"></script>
+
 </body>
 
 </html>
