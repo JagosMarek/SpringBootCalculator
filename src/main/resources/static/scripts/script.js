@@ -24,14 +24,14 @@ function closeMenu() {
 
 /* Basic page */
 
-  function resetForm() {
+  function resetFormBasic() {
     document.getElementById("number1").value = "";
     document.getElementById("number2").value = "";
     document.getElementById("operation").selectedIndex = 0;
     document.getElementById("decimal").value = "1";
   }
 
-  function swap() {
+  function swapBasic() {
     var number1Value = document.getElementById("number1").value;
     var number2Value = document.getElementById("number2").value;
 
@@ -99,4 +99,12 @@ function resetFormMedian() {
 
 function resetFormFactorial() {
   document.getElementById("number").value = "";
+}
+
+/* Generator page */
+
+function resetFormGenerator() {
+  document.getElementById("number1").value = "";
+  document.getElementById("number2").value = "";
+  document.getElementById("operation").selectedIndex = 0;
 }

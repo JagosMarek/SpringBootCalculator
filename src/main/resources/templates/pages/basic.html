@@ -27,7 +27,7 @@
         </label>
         <label>
           Operace:
-          <select class="operation" id="operation" name="operation" th:field="${basicDTO.operation}">
+          <select th:field="${basicDTO.operation}" class="operation" id="operation" name="operation">
             <option value="+">Součet</option>
             <option value="-">Rozdíl</option>
             <option value="*">Součin</option>
@@ -36,8 +36,8 @@
         </label>
         <div class="button-container">
           <input type="submit" value="Počítat" />
-          <input type="button" value="Prohodit" onclick="swap()" />
-          <input type="button" value="Vymazat" onclick="resetForm()" />
+          <input type="button" value="Prohodit" onclick="swapBasic()" />
+          <input type="button" value="Vymazat" onclick="resetFormBasic()" />
           <p>Zaokrouhlit na<input th:field="${basicDTO.decimal}" type="number" name="decimal" id="decimal" placeholder="Desetinné" min="0" max="10" pattern="[0-9]+" required>desetinných míst (0-10)</p>
         </div>
       </form>
